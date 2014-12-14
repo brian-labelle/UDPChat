@@ -22,11 +22,8 @@ public class UDPSocketServer {
           		while(!isInterrupted())
           		{
           			try{
-          				if(connected)
-          				{
-          					get_command_and_execute();
-          				}
-
+          				
+          				
 		          		if(!connected && !initial_connection)
 		          		{
 		          			boolean valid_input = false;
@@ -50,6 +47,11 @@ public class UDPSocketServer {
 		              			}
 		          				
 		          			}
+		          		}
+		          		if(connected)
+		          		{
+		          			get_command_and_execute();
+		          			Thread.sleep(5000);
 		          		}
           			} catch (InterruptedException e) {System.out.println(e.getMessage());}
           		}
@@ -86,7 +88,7 @@ public class UDPSocketServer {
                 DatagramPacket replyPacket =
                         new DatagramPacket(data, data.length, IPAddress, port);
                 socket.send(replyPacket);
-                get_command_and_execute();
+                
                 Thread.sleep(2000);
             }
 
